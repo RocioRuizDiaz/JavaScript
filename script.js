@@ -1,123 +1,70 @@
-alert("bienvenido/a a cine Hoyts");
+const productos = [
+    {nombre: "Blue Period", precio: 990 },
+    {nombre: "Re:Zero", precio: 1000 },
+    {nombre: "Banana Fish", precio: 1900 },
+    {nombre: "Tokyo Revenger", precio: 1200 },
+    {nombre: "Dr. Stone", precio: 1100 },
+];
 
-let pelicula1 = "Sonrie";
-let pelicula2 = "El chef";
-let pelicula3 = "El perro samurai";
-let pelicula4 = "Amsterdam";
-let precioEntrada = 600;
-let totalEntradas = parseInt(``);
-let precioTotalCompra = parseFloat(``);
+let carrito= []
 
-function multiplicacion(number1, number2) {
-  let resultado = number1 * number2;
-  return resultado;
+let eleccionDeProductos = prompt("hola deseo adquirir algun producto si o no?")
+
+while(eleccionDeProductos != "si" && eleccionDeProductos != "no"){
+    alert("ingrese una oprcio si o no")
+    eleccionDeProductos = prompt("hola deseo adquirir algun producto?")
 }
 
-let seleccionDePelicula = parseInt(
-  prompt(
-    "Elija la pelicula que desea ver:\n" +
-      `1_` +
-      pelicula1 +
-      `\n` +
-      `2_` +
-      pelicula2 +
-      `\n` +
-      `3_` +
-      pelicula3 +
-      `\n` +
-      `4_` +
-      pelicula4 +
-      `\n` +
-      `9__SALIR`
-  )
-);
-
-if (seleccionDePelicula == 1) {
-  alert(`usted selecciono: ` + pelicula1);
-  totalEntradas = parseInt(
-    prompt(
-      `El valor de la entrada es $` + precioEntrada + ` Cuantas entradas desea?`
-    )
-  );
-  precioTotalCompra = alert(
-    `usted selecciono ` +
-      totalEntradas +
-      ` con un valor total de $` +
-      multiplicacion(precioEntrada, totalEntradas)
-  );
-} else if (seleccionDePelicula == 2) {
-  alert(`usted selecciono: ` + pelicula2);
-  totalEntradas = parseInt(
-    prompt(
-      `El valor de la entrada es $` + precioEntrada + ` Cuantas entradas desea?`
-    )
-  );
-  precioTotalCompra = alert(
-    `usted selecciono ` +
-      totalEntradas +
-      ` con un valor total de $` +
-      multiplicacion(precioEntrada, totalEntradas)
-  );
-} else if (seleccionDePelicula == 3) {
-  alert(`usted selecciono: ` + pelicula3);
-  totalEntradas = parseInt(
-    prompt(
-      `El valor de la entrada es $` + precioEntrada + ` Cuantas entradas desea?`
-    )
-  );
-  precioTotalCompra = alert(
-    `usted selecciono ` +
-      totalEntradas +
-      ` con un valor total de $` +
-      multiplicacion(precioEntrada, totalEntradas)
-  );
-} else if (seleccionDePelicula == 4) {
-  alert(`usted selecciono: ` + pelicula4);
-  totalEntradas = parseInt(
-    prompt(
-      `El valor de la entrada es $` + precioEntrada + ` Cuantas entradas desea?`
-    )
-  );
-  precioTotalCompra = alert(
-    `usted selecciono ` +
-      totalEntradas +
-      ` con un valor total de $` +
-      multiplicacion(precioEntrada, totalEntradas)
-  );
-} else if (seleccionDePelicula == 9) {
-  alert(`Muchas gracias por su visita`);
+if(eleccionDeProductos =="si"){
+    alert("nuestra lista de producto")
+    let todoslosProductos = productos.map(
+        (producto) => producto.nombre + " " + producto.precio + "$"
+    );
+    alert(todoslosProductos.join(" \n"))
+}  else if (eleccionDeProductos == "no"){
+    alert("gracias, hasta la proxima!")
 }
-alert("Ingrese sus datos para adquirir las entradas ");
+while(eleccionDeProductos != "no"){
+    let producto = prompt("agregue un producto a su carrito")
+    let precio = 0
 
-let nombre = prompt("ingrese su nombre");
-let apellido = prompt("ingrese su apellido");
-let edad = prompt("ingrese su edad");
-let pago = parseInt(prompt("ingrese nro de su tarjeta"));
-let vencimiento = prompt("ingrese fecha de vencimiento mm/yy");
-let ccv = parseInt(prompt("ingre su codigo de seguridad"));
-while (
-  nombre == "" ||
-  apellido == "" ||
-  isNaN(edad) ||
-  isNaN(pago) ||
-  isNaN(vencimiento) ||
-  isNaN(ccv)
-) {
-  alert("revise que los datos sean correctos");
-  nombre = prompt("ingrese su nombre");
-  apellido = prompt("ingrese su apellido");
-  edad = prompt("ingrese su edad");
-  pago = parseInt(prompt("ingrese nro de su tarjeta"));
-  vencimiento = prompt("ingrese fecha de vencimiento mm/yy");
-  ccv = parseInt(prompt("ingre su codigo de seguridad"));
+    if(producto =="Blue Period" || producto =="Re:Zero" || producto == "Banana Fish" ||
+     producto == "Tokyo Revenger" || producto == "Dr. Stone"){
+        switch(producto) {
+            case "Blue Period":
+                precio = 990;
+                break;
+            case "Re:Zero":
+                precio = 1000;
+                break;
+            case "Banana Fish":
+                precio = 1900;
+                break;
+            case "Tokyo Revenger":
+                precio = 1200;
+                break; 
+            case "Dr. Stone":
+                precio = 1100;
+                break;           
+        }
+        let unidades = parseInt(prompt("cuantas unidades desea llevar?"))
+
+        carrito.push({producto, unidades, precio})
+        console.log(carrito)
+     } else {
+        alert("ese producto no esta disponible")
+     }
+
+     eleccionDeProductos = prompt("desea seguir comprando?")
+
+     if(eleccionDeProductos === "no"){
+        alert("gracias por su compra! vuelva pronto")
+        carrito.forEach((carritoFinal) =>{
+            console.log(`producto: ${carritoFinal.producto}, unidades ${carritoFinal.unidades},
+            total a pagar por producto ${carritoFinal.unidades * carritoFinal.precio}`)
+        })
+        break;
+     }
 }
-alert(
-  "sus datos han sido ingresado correctamente \n" +
-    nombre +
-    ` ` +
-    apellido +
-    `\n` +
-    `Esperamos que disfute su funcion`
-);
-
-alert(`muchas gracias por su compra`);
+const total = carrito.reduce((acc, el) => acc + el.precio * el.unidades, 0)
+console.log(`su total de compra es ${total}`)
