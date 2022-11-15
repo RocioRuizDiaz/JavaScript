@@ -1,4 +1,4 @@
-let productos = [
+const productos = [
     {id: 1, nombre: "Blue Period", precio: 990, cantidad: 2, imgUrl: "./img/blueperiod1.jpg" },
     {id: 2, nombre: "Re:Zero", precio: 1000, cantidad:2, imgUrl: "./img/unnamed-241.jpg" },
     {id: 3, nombre: "Banana Fish", precio: 1900, cantidad: 3, imgUrl: "./img/banana31-320-0.jpg" },
@@ -19,14 +19,14 @@ let productos = [
 
 let carrito = [];
 
-const contenedor = document.querySelector("#contenedor");
-const carritoContenedor = document.querySelector("#carritoContenedor");
-const vaciarCarrito = document.querySelector("#vaciarCarrito");
-const precioTotal = document.querySelector("#precioTotal");
-const functionActive = document.querySelector("#functionActive");
-const procesarCompra = document.querySelector("#procesarCompra");
-const compraTotal = document.querySelector("#compraTotal");
-const formulario = document.querySelector('#procesar-pago');
+const contenedor = document.getElementById("#contenedor");
+const carritoContenedor = document.getElementById("#carritoContenedor");
+const vaciarCarrito = document.getElementById("#vaciarCarrito");
+const precioTotal = document.getElementById("#precioTotal");
+const functionActive = document.getElementById("#functionActive");
+const procesarCompra = document.getElementById("#procesarCompra");
+const compraTotal = document.getElementById("#compraTotal");
+const formulario = document.getElementById('#procesar-pago');
 
     if (functionActive) {
         functionActive.addEventListener("click",  procesarPedido);
@@ -38,7 +38,7 @@ const formulario = document.querySelector('#procesar-pago');
 
         
         mostrarCarrito();
-        document.querySelector("#activarFuncion").click(procesarPedido);
+        mostrarCarrito.addEventListener("#activarFuncion").click(procesarPedido);
       });
       if(formulario){
         formulario.addEventListener('submit', enviarCompra)
@@ -109,7 +109,6 @@ const mostrarCarrito = () => {
         modalBody.innerHTML = "";
         carrito.forEach((producto) => {
             const { id, nombre, precio, cantidad, imgUrl} = producto;
-            console.log(modalBody);
             modalBody.innerHTML += `
             <div class="modal-contenedor">
             <div>
