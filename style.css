@@ -4,29 +4,33 @@
 }
 
 
+.nav-container {
+    position: sticky;
+    z-index: 3;
+    top: 0;
+}
 
-
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    height: 12vh;
+    background-color: #1b1b1b;
+}
 .nav-logo{
     justify-self: start;
-    margin-left: 25px;
-    color: #fff;
+    margin-left: 20px;
+    color:#fff;
     margin-top: 4vh;
     cursor: pointer;
 }
-.modal-contenedor {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-}
 
-/*.carritoContenedor {
+
+h3 {
     font-size: 25px;
     margin-right: 20px;
     margin-top: 3.5vh;
     cursor: pointer;
 }
-
-
 
 
 .contenedor  {
