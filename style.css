@@ -91,6 +91,17 @@ a{
     width: 200px;
     padding: 20px;
 }
-.modal-content {
-    background-color: #fff;
+.parrafo{
+    font-weight: 900;
+    font-style: italic;
+}
+#precioTotal{
+    margin:0;
+    padding:0;
+}
+a{
+    text-decoration: none;
+}
+.boton{
+    opacity:0;
 }
