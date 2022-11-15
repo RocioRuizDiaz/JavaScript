@@ -1,4 +1,4 @@
-const productos = [
+let productos = [
     {id: 1, nombre: "Blue Period", precio: 990, cantidad: 2, imgUrl: "./img/blueperiod1.jpg" },
     {id: 2, nombre: "Re:Zero", precio: 1000, cantidad:2, imgUrl: "./img/unnamed-241.jpg" },
     {id: 3, nombre: "Banana Fish", precio: 1900, cantidad: 3, imgUrl: "./img/banana31-320-0.jpg" },
@@ -19,14 +19,14 @@ const productos = [
 
 let carrito = [];
 
-const contenedor = document.getElementById("#contenedor");
-const carritoContenedor = document.getElementById("#carritoContenedor");
-const vaciarCarrito = document.getElementById("#vaciarCarrito");
-const precioTotal = document.getElementById("#precioTotal");
-const functionActive = document.getElementById("#functionActive");
-const procesarCompra = document.getElementById("#procesarCompra");
-const compraTotal = document.getElementById("#compraTotal");
-const formulario = document.getElementById('#procesar-pago');
+let contenedor = document.getElementById("#contenedor");
+let carritoContenedor = document.getElementById("#carritoContenedor");
+let vaciarCarrito = document.getElementById("#vaciarCarrito");
+let precioTotal = document.getElementById("#precioTotal");
+let functionActive = document.getElementById("#functionActive");
+let procesarCompra = document.getElementById("#procesarCompra");
+let compraTotal = document.getElementById("#compraTotal");
+let formulario = document.getElementById('#procesar-pago');
 
     if (functionActive) {
         functionActive.addEventListener("click",  procesarPedido);
@@ -35,17 +35,9 @@ const formulario = document.getElementById('#procesar-pago');
 
     document.addEventListener("DOMContentLoaded", () => {
         carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-
-        
-        mostrarCarrito();
-        mostrarCarrito.addEventListener("#activarFuncion").click(procesarPedido);
+       
       });
-      if(formulario){
-        formulario.addEventListener('submit', enviarCompra)
-      }
-
-
-
+      
     if (vaciarCarrito) {
         vaciarCarrito.addEventListener("click", () => {
             carrito.length = [];
@@ -70,7 +62,7 @@ const formulario = document.getElementById('#procesar-pago');
 
 
 productos.forEach((producto) => {
-    const {id, nombre, precio, cantidad, imgUrl} = producto
+    let {id, nombre, precio, cantidad, imgUrl} = producto
     if (contenedor) {
         contenedor.innerHTML += `
     <div class="card">
@@ -86,25 +78,25 @@ productos.forEach((producto) => {
     }
 });
 
-const agregarProducto = (id) => {
-    const existe = carrito.some(producto => producto.id === id)
+let agregarProducto = (id) => {
+    let existe = carrito.some(producto => producto.id === id)
 
     if(existe){
-        const producto = carrito.map(producto => {
+       let producto = carrito.map(producto => {
             if(producto.id === id){
                 producto.cantidad++
             }
         })
     } else {
-        const item = productos.find((producto) => producto.id === id)
+        let item = productos.find((producto) => producto.id === id)
         carrito.push(item)
     }
     mostrarCarrito()
    
 };
 
-const mostrarCarrito = () => {
-    const modalBody = document.querySelector(".modal .modal-body");
+let mostrarCarrito = () => {
+    let modalBody = document.querySelector(".modal .modal-body");
     if (modalBody) {
         modalBody.innerHTML = "";
         carrito.forEach((producto) => {
@@ -131,9 +123,9 @@ const mostrarCarrito = () => {
         <p class="text-center>Todavia no agregaste nada</p>
         `;
     } else {
-    
-    }
     carritoContenedor.textContent = carrito.length;
+    }
+    
 
 
     if (precioTotal) {
@@ -141,7 +133,7 @@ const mostrarCarrito = () => {
         0);
     }
 
-    guardarStorage();
+   
 };
 
     function guardarStorage () {
@@ -149,17 +141,40 @@ const mostrarCarrito = () => {
     }
 
     function eliminarProducto(id) {
-        const mangaId = id;
+        let mangaId = id;
         carrito = carrito.filter((mangas) = mangas.id !== mangaId);
         mostrarCarrito();
     }
     
+function pedido() {
+    carrito.forEach((producto) =>{
+        let contenedorCompra = document.querySelector('#contenedorCompra')
+        let {id, nombre, precio, cantidad, imgUrl} = producto;
+        let div = document.createElement("div");
+        div.innerHTML += `
+        <div class="modal-contenedor">
+        <div>
+        <img class="img-fluid img-carrito" src="${imgUrl}"/>
+        </div>
+        <div>
+         <p>Producto: ${nombre}</p>
+         <p>Precio: $${precio}</p>
+         <p>Cantidad: ${cantidad}</p>  
+         <button onclick="eliminarProductos(${id})" class="button">Eliminar producto</button>
+        </div>
+        </div>
+        `;
+        contenedorCompra.appendChild(div);
+
+    });
+}
+
     function procesarPedido() {
         carrito.forEach((producto) => {
-            const listaCompra = document.querySelector("#lista-compra tbody");
-            const {id, nombre, precio, cantidad, imgUrl} = producto;
+            let listaCompra = document.querySelector("#lista-compra tbody");
+            let {id, nombre, precio, cantidad, imgUrl} = producto;
             if (listaCompra) {
-                const row = document.createElement("tr");
+               let row = document.createElement("tr");
                 row.innerHTML += `
                 <td>
                 <img class="img-fluid img-carrito" src="${imgUrl}"/>
@@ -179,8 +194,8 @@ const mostrarCarrito = () => {
     }
     function enviarCompra(e){
         e.preventDefault()
-        const cliente = document.querySelector('#cliente').value 
-        const  email = document.querySelector('#correo').value 
+        let cliente = document.querySelector('#cliente').value 
+        let email = document.querySelector('#correo').value 
 
         if(email === '' || cliente == ''){
             Swal.fire({
@@ -190,45 +205,8 @@ const mostrarCarrito = () => {
                 confirmButtonText:"Acepta",
             })
         } else {
-            const btn = document.getElementById('button');
+            let btn = document.getElementById('button');
 
-
-            
-            btn.value = 'Enviando..';
-
-            const serviceID = ' default-service';
-            const templateID = 'template_qxwi0jn';
-
-            emailjs.sendForm(serviceID, templateID, this)
-            .then(() => {
-                btn.value = 'Finalizar compra';
-                alert('correo enviado');
-            }, (err) => {
-                btn.value = 'Finalizar compra';
-                alert(JSON.stringify(err));
-            });
-
-            const spinner = document.querySelector('#spinner')
-            spinner.classList.add('d-flex')
-            spinner.classList.remove('d-none')
-
-
-            setTimeout(() => {
-                spinner.classList.add('d-flex')
-                spinner.classList.remove('d-none')
-                formulario.reset()
-
-             const alertExito = document.createElement('p')
-             alertExito.classList.add('alert', 'alerta', 'd-block', 'text-center, col-12, mt-2', 'alert-succes')
-             alertExito.textContent = 'Compra realizada exitosa' 
-             formulario.appendChild(alertExito)
-
-             setTimeout(() => {
-                alertExito.remove()
-             }, 3000)
-            
-            }, 3000)
-            calStorage.clear()
             
         }
     }
