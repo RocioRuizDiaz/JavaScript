@@ -1,167 +1,138 @@
-
-    // Variables
-    let productos = [
-        {id: 1, nombre: "Blue Period", precio: 990, cantidad: 2, imgUrl: "./img/blueperiod1.jpg" },
-        {id: 2, nombre: "Re:Zero", precio: 1000, cantidad:2, imgUrl: "./img/unnamed-241.jpg" },
-        {id: 3, nombre: "Banana Fish", precio: 1900, cantidad: 3, imgUrl: "./img/banana31-320-0.jpg" },
-        {id: 4, nombre: "Tokyo Revenger", precio: 1200, cantidad: 1, imgUrl: "./img/tokyorevengers-320-0.jpg" },
-        {id: 5, nombre: "Akame Ga Kill", precio: 1200, cantidad:3,  imgUrl: "./img/akamegakill041-14-0.jpg" },
-        {id: 6, nombre: "Amor de Gata", precio: 2000, cantidad: 2, imgUrl: "./img/amordegata11-f-0.jpg" },
-        {id: 7, nombre: "Call Of The Night", precio: 1200, cantidad: 2, imgUrl: "./img/callofthenight11-3dc-0.jpg" },
-        {id: 8, nombre: "Chainsaw Man", precio: 1200, cantidad: 4, imgUrl: "./img/chainsawman011-29a-0.jpg"},
-        {id: 9, nombre: "Dandadan", precio: 1200, cantidad: 1, imgUrl: "./img/dandadan011.jpg" },
-        {id: 10, nombre: "Hitorijime Boyfriend", precio: 1200, cantidad: 1, imgUrl: "./img/hitorijimeboyfriend1.jpg" },
-        {id: 11, nombre: "Jujutsu Kaisen 01", precio: 1100, cantidad: 6, imgUrl: "./img/jujutsu01-94fb-0.jpg" },
-        {id: 12, nombre: "Jujutsu Kaisen 11", precio: 1100, cantidad:4,  imgUrl:  "./img/jujutsu11-0d3-0.jpg" },
-        {id: 13, nombre: "Mushoku", precio: 1200, cantidad:2,  imgUrl: "./img/mushoku11-215.jpg" },
-        {id: 14, nombre: "One Piece  33", precio: 1200, cantidad:5, imgUrl: "./img/onepiece331-b3b-0.jpg" },
-        {id: 15, nombre: "Oshinoko 1", precio: 1200, cantidad: 1, imgUrl: "./img/oshinoko011-27d8-0.jpg" },
-
-    ];
-
-    let carrito = document.getElementById('carrito');
-    let total = document.getElementById('total');
-    let botonVaciar = document.getElementById('boton-vaciar');
-    let inputBusqueda = document.getElementById('busqueda')
-    let botonBusqueda = document.getElementById('buscar')
+let productos = [ 
+    {id: 1, nombre: "Blue Period", precio: 990,  imgUrl: "./img/blueperiod1.jpg" },
+    {id: 2, nombre: "Re:Zero", precio: 1000,  imgUrl: "./img/unnamed-241.jpg" },
+    {id: 3, nombre: "Banana Fish", precio: 1900,  imgUrl: "./img/banana31-320-0.jpg" },
+    {id: 4, nombre: "Tokyo Revenger", precio: 1200,  imgUrl: "./img/tokyorevengers-320-0.jpg" },
+    {id: 5, nombre: "Akame Ga Kill", precio: 1200,   imgUrl: "./img/akamegakill041-14-0.jpg" },
+    {id: 6, nombre: "Amor de Gata", precio: 2000,  imgUrl: "./img/amordegata11-f-0.jpg" },
+    {id: 7, nombre: "Call Of The Night", precio: 1200,  imgUrl: "./img/callofthenight11-3dc-0.jpg" },
+    {id: 8, nombre: "Chainsaw Man", precio: 1200,  imgUrl: "./img/chainsawman011-29a-0.jpg"},
+    {id: 9, nombre: "Dandadan", precio: 1200, imgUrl: "./img/dandadan011.jpg" },
+    {id: 10, nombre: "Hitorijime Boyfriend", precio: 1200,  imgUrl: "./img/hitorijimeboyfriend1.jpg" },
+    {id: 11, nombre: "Jujutsu Kaisen 01", precio: 1100, imgUrl: "./img/jujutsu01-94fb-0.jpg" },
+    {id: 12, nombre: "Jujutsu Kaisen 11", precio: 1100,   imgUrl:  "./img/jujutsu11-0d3-0.jpg" },
+    {id: 13, nombre: "Mushoku", precio: 1200,   imgUrl: "./img/mushoku11-215.jpg" },
+    {id: 14, nombre: "One Piece  33", precio: 1200,  imgUrl: "./img/onepiece331-b3b-0.jpg" },
+    {id: 15, nombre: "Oshinoko 1", precio: 1200,   imgUrl: "./img/oshinoko011-27d8-0.jpg" },
+] 
 
 
-    let miLocalStorage = window.localStorage;
-   /** renderizarProductos(productos)
-    botonBusqueda.onclick = () => {
-        let productosFiltrados = productos.filter(producto => producto.nombre.includes(inputBusqueda.value))
-        renderizarProductos(productosFiltrados)
-    }*/
-    // Funciones
+let modalContenedor = document.getElementById("modalContenedor")
+let inputBusqueda = document.getElementById('busqueda')
+let botonBusqueda = document.getElementById('buscar')
+let contenedor = document.getElementById("#contenedor");
+let carritoContenedor = document.getElementById("#carritoContenedor");
+let vaciarCarrito = document.getElementById("#vaciarCarrito");
+let precioTotal = document.getElementById("#precioTotal");
+let activarFuncion = document.getElementById("#activarFuncion");
+let procesarCompra = document.getElementById("#procesarCompra");
+let totalProceso = document.getElementById("#totalProceso");
+let formulario = document.getElementById('#procesar-pago')
 
-    /**
-    todos los productos a partir de la base de datos. No confundir con el carrito
-    */
-   
-   // function renderizarProductos(productos)  {
-        productosList.forEach((prod) => {
-            let cardBody = document.createElement("div");
-            cardBody.classList.add('card-Body')
-            //tittle
-            let cardTittle = createElement("h3");
-            cardTittle.innerText = prod.nombre
-            //precio
-            let cardPrice = document.createElement("p")
-            cardPrice.classList.add('card-text')
-            cardPrice.innerText ='$${prod.precio}'
-            //stock
-            let cardCantidad = document.createElement("p")
-            cardCantidad.classList.add('card-text')
-            cardCantidad.innerText = 'Cantidad: ${prod.Cantidad}'
-            //<img src=${producto.imgUrl}> 
-            
-        });    
-            
-           // conteiner.append(content);
-        
-           /** let comprar = document.createElement("button");
-            comprar.innerText = "Agregar a Carrito";
-            comprar.className = "comprar";
-        
-            content.append(comprar);
-        
-            comprar.addEventListener("click", () => {
-                carrito.push({
-                    id:producto.id,
-                    img:producto.img,
-                    nombre:producto.nombre,
-                    precio:producto.precio,
-                });
-                
-            });
-           
-        
-   // };
 
-    /**
-    * Evento para añadir un producto al carrito de la compra
-    
-     function agregarACarrito(id) {
-       
-        
-        let item = productos.find((productos) => productos.id === id)
-        carrito.push(item)
-     
-        
-        renderizarCarrito();
-        
-        
-        let carritoGuardado = JSON.parse(localStorage.getItem('carrito')) || []
-    }
-*/
-    /**
-    *  todos los productos guardados en el carrito
-   
-    function renderizarCarrito() {
-       
-         
-         };
-    
- */
-    /**
-    * Evento para borrar un elemento del carrito
-    
-    function borrarItemCarrito(evento) {
-      
-        const id = evento.target.dataset.item;
-        
-        carrito = carrito.filter((carritoId) => {
-            return carritoId !== id;
+//LOCAL
+if (localStorage.getItem('carrito')) {
+    carritoGuardado = JSON.parse(localStorage.getItem('carrito'))
+  }
+botonBusqueda.onclick = () => {
+    let productosFiltrados = productos.filter(producto => producto.nombre.includes(inputBusqueda.value))
+    renderizarProductos(productosFiltrados)
+  }
+  inputBusqueda.oninput = () => {
+    let productosFiltrados = productos.filter(producto => producto.nombre.includes(inputBusqueda.value))
+    renderizarProductos(productosFiltrados)
+  }
+
+  if (procesarCompra) {
+    procesarCompra.addEventListener("click", () => {
+      if (carrito.length === 0) {
+        Swal.fire({
+          title: "¡Tu carrito está vacio!",
+          text: "Compra algo para continuar con la compra",
+          icon: "error",
+          confirmButtonText: "Aceptar",
         });
-      
-        renderizarCarrito();
-       
-        guardarCarritoEnLocalStorage();
-
-    }*/
-
-    /**
-     * Calcula el precio total teniendo en cuenta los productos repetidos
-     
-    function calcularTotal() {
-        // Recorremos el array del carrito 
-        return carrito.reduce((total, itemProductos) => {
-            // De cada elemento obtenemos su precio
-            let miItem = productos.filter((itemProductos) => {
-                return itemProductos.id === parseInt(item);
-            });
-            // Los sumamos al total
-            return total + miItem[0].precio;
-        }, 0).toFixed(2);
-    }*/
-
-    /**
-    * Varia el carrito y vuelve a dibujarlo
+      } else {
+        location.href = "compra.html";
+      }
+    });
+  }
+  //CARD
+productos.forEach((producto) => {
+    let content = document.createElement("div");
+    content.className = "card";
+    content.innerHTML = `
+    <img src=${producto.imgUrl}> 
+    <h3>${producto.nombre}</h3>
+    <p class="precio">$${producto.precio} </p>
     
-    function vaciarCarrito() {
-        // Limpiamos los productos guardados
-        carrito = [];
-        // Renderizamos los cambios
-        renderizarCarrito();
-        // Borra LocalStorage
-        localStorage.clear();
+    `;
+    contenedorProductos.append(content);
 
+    let comprar = document.createElement("button");
+    comprar.innerText = "Agregar a Carrito";
+    comprar.className = "comprar";
+
+    content.append(comprar);
+
+   
+   
+});
+ //RENDERIZAR PRODUCTO
+function renderizarProductos(productosFiltrados) {
+    let productosARenderizar = productos
+    if (productosFiltrados) {
+      productosARenderizar = productosFiltrados
     }
-
-    function guardarCarritoEnLocalStorage () {
-        miLocalStorage.setItem('carrito', JSON.stringify(carrito));
+    contenedorProductos.innerHTML = ''
+    for (const producto of productosARenderizar) {
+  
+      let mensajeStock
+      if (producto.Stock < 5) {
+        mensajeStock = 'Ultimas unidades'
+      } else {
+        mensajeStock = `Quedan ${producto.Stock} u.`
+      }
+  
+    let card = document.createElement('div')
+      card.className = 'card'
+      card.innerHTML = `
+      <img src=${producto.imgUrl}>
+        <h3>${producto.nombre}</h3>
+        <h4>$${producto.precio}</h4>
+        <p>${producto.cantidad}</p>
+        <p>${producto.Stock}</p>
+        <button class="boton" id=${producto.id}>Agregar al carrito</button>
+      `
+      contenedorProductos.append(card)
+  }
+}
+  //RENDERIZAR CARRITO
+function renderizarCarrito() {
+    carrito.innerHTML = `
+      <div class="itemCarrito">
+        <p>nombre</p>
+        <p>precioUnidad</p>
+        <p>unidades</p>
+        <p>subtotal</p>
+      </div>
+    `
+ let total = 0
+    for (const item of carritoGuardado) {
+      total += item.subtotal
+      carrito.innerHTML += `
+        <div class="itemCarrito">
+          <p>${item.nombre}</p>
+          <p>${item.precioUnidad}</p>
+          <p>${item.cantidad}</p>
+          <p>${item.subtotal}</p>
+        </div>
+      `
     }
+    carrito.innerHTML += `
+      <div class="itemCarrito">
+        <h3>total: ${total}</h3>
+      </div>
+    `
+  }
 
-    function cargarCarritoDeLocalStorage () {
-        // ¿Existe un carrito previo guardado en LocalStorage?
-        if (miLocalStorage.getItem('carrito') !== null) {
-            // Carga la información
-            carrito = JSON.parse(miLocalStorage.getItem('carrito'));
-        }
-    }*/
-
-    // Eventos
-    //botonVaciar.addEventListener('click', vaciarCarrito);
-
-    // Inicio* /
-    

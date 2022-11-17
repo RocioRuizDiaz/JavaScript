@@ -25,15 +25,10 @@
 }
 
 
-h3 {
-    font-size: 25px;
-    margin-right: 20px;
-    margin-top: 3.5vh;
-    cursor: pointer;
-}
 
 
-#container {
+
+#contenedorProductos {
     display: flex;
     justify-content: space-around;
     flex-wrap:wrap;
@@ -45,7 +40,7 @@ h3 {
 } 
 
 /*product card*/
-.producto{
+.contenProductos{
     display: flex;
     justify-content: center;
     flex-wrap:wrap;
@@ -54,8 +49,8 @@ h3 {
    
 }
 
-.card {
-    max-width:300px;
+.card{
+    max-width:200px;
     padding: 15px;
     margin: 10px;
     text-align: center;
@@ -65,17 +60,24 @@ h3 {
     width: 90%;
     height: 250px;
     justify-content: center;
-    object-fit: cover;
+    
     
 }
 
-.p{
+h3 {
+    font-size: 25px;
+    margin: 20px;
+    cursor: pointer;
+}
+
+.h4{
+    font-size: 20px;
     color: #1b1b1b;
     margin: 5px;
     font-size: 15px;
 }
 
-.boton {
+.comprar{
     border-radius:  15px;
     outline: 0;
     padding: 5px;
