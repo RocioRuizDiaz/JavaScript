@@ -94,7 +94,7 @@ function renderizarProductos(productosFiltrados) {
         mensajeStock = `Quedan ${producto.Stock} u.`
       }
   
-    let card = document.createElement('div')
+ let card = document.createElement('div')
       card.className = 'card'
       card.innerHTML = `
       <img src=${producto.imgUrl}>
@@ -105,10 +105,10 @@ function renderizarProductos(productosFiltrados) {
         <button class="boton" id=${producto.id}>Agregar al carrito</button>
       `
       contenedorProductos.append(card)
+    }
   }
-}
   //RENDERIZAR CARRITO
-function renderizarCarrito() {
+  function renderizarCarrito() {
     carrito.innerHTML = `
       <div class="itemCarrito">
         <p>nombre</p>
@@ -135,4 +135,32 @@ function renderizarCarrito() {
       </div>
     `
   }
+  
+function botonVacio(){
+    totalReduce = 0;
+    botonVacio();
+    cart = [];
+    cartList.innerHTML = "";
+    totalValue.innerText = priceMoney + 0;
+    renderCart();
+    totalPrice();
+    //ALERT SWEETALERT
+    Toast.fire({
+        icon: 'info',
+        title: ' carrito vacio '
+      })
+}
+
+// PRECIO TOTAL
+function calculateTotalPrice(){
+    renderCart();
+    totalReduce = cart.reduce((total, itemId) => {
+        let item = listaProducto.filter((produc) =>{
+        return produc.id === parseInt(itemId)})
+        return total + item[0].precio },0);
+    return totalReduce;
+}
+function totalPrice(){
+    totalValue.textContent = `Precio total `+ priceMoney + calculateTotalPrice().toFixed(2);
+}
 
